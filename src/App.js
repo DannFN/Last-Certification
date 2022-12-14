@@ -1,25 +1,84 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import LeftBanner from "./Components/LeftBanner";
+import Table from "./Components/Table";
+import Modal from "./Components/Modal";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    data: [],
+    firstName: undefined,
+    lastName: undefined,
+    department: undefined,
+    salary: undefined,
+    showModal: false,
+    editId: undefined,
+    mode: true,
+    deleteId: undefined,
+    sort: "none",
+    filter: "none",
+    errorMsg: "",
+  };
+
+
+  handleGetData = () => {
+   
+  };
+
+  handleChange = (e) => {
+    
+  };
+
+  handleResetState = () => {
+    
+  };
+
+  handleClearFilter = () => {
+    
+  };
+
+  //filter and sorting
+  handleFilter = () => {
+    
+  };
+
+  handleDelete = (i) => {
+    
+  };
+
+  closeModal = () => {
+    
+  };
+
+  handleEdit = (i) => {
+    
+  };
+
+  handleDeleteEmployee = async (i) => {
+    
+  };
+
+  handleValidation = () => {
+    
+  };
+
+  handleAdd = async () => {
+    
+  };
+
+  render() {
+    return (
+      <div>
+        <header className="Header">
+        
+        </header>
+        <div className="Body">
+          
+        </div>
+        
+      </div>
+    );
+  }
 }
 
 export default App;
