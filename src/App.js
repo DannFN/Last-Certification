@@ -70,12 +70,13 @@ class App extends Component {
     return (
       <div>
         <header className="Header">
-        
+          Employee Management
         </header>
         <div className="Body">
-          
+          <LeftBanner />
+          <Table />
         </div>
-        
+        <Modal />
       </div>
     );
   }
