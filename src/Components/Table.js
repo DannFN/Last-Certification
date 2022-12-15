@@ -1,6 +1,6 @@
 import React from "react";
-import editIcon from "../images/edit.png";
-import deleteIcon from "../images/delete.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function Table(props) {
   return (
