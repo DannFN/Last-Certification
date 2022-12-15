@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.tcs.employeeManagement.employee.models.Employee;
 import com.tcs.employeeManagement.employee.models.EmployeeRequestDTO;
+import com.tcs.employeeManagement.employee.models.EmployeeUpdateRequestDTO;
 import com.tcs.employeeManagement.employee.repositories.EmployeeRepository;
 
 @Service
@@ -17,22 +18,27 @@ public class EmployeeService {
     }
 
     public List<Employee> getEmployees(String dept, String salary) {
+        List<Employee> employees = employeeRepository.findAll();
+
         if (dept != null) {
-            return employeeRepository.findByDepartment(dept);
-        } else if (salary != null) {
+            employees.removeIf(employee -> !employee.getDepartment().equals(dept));
+        }
+
+        if (salary != null) {
             if (salary.equals("asc")) {
-                return employeeRepository.findAllByOrderBySalaryAsc();
+                employees.sort((e1, e2) -> e1.getSalary() - e2.getSalary());
             } else if (salary.equals("desc")) {
-                return employeeRepository.findAllByOrderBySalaryDesc();
+                employees.sort((e1, e2) -> e2.getSalary() - e1.getSalary());
             }
         }
 
-        return employeeRepository.findAll();
+        return employees;
     }
 
     public Employee savEmployee(EmployeeRequestDTO employeeRequest) {
         return employeeRepository.save(
                 Employee.builder()
+                        .id(employeeRequest.getId())
                         .firstName(employeeRequest.getFirstName())
                         .lastName(employeeRequest.getLastName())
                         .department(employeeRequest.getDepartment())
@@ -40,14 +46,21 @@ public class EmployeeService {
                         .build());
     }
 
-    public Employee updateEmployee(int id, EmployeeRequestDTO employeeRequest) {
-        Employee employee = employeeRepository.findById(id).get();
-        employee.setFirstName(employeeRequest.getFirstName());
-        employee.setLastName(employeeRequest.getLastName());
-        employee.setDepartment(employeeRequest.getDepartment());
-        employee.setSalary(employeeRequest.getSalary());
+    public Employee updateEmployee(int id, EmployeeUpdateRequestDTO employeeUpdateRequest) {
+        Employee employeeToUpdate = employeeRepository.findById(id).get();
+        
+        employeeToUpdate
+                .setFirstName(employeeUpdateRequest.getFirstName() != null ? employeeUpdateRequest.getFirstName()
+                        : employeeToUpdate.getFirstName());
+        employeeToUpdate.setLastName(employeeUpdateRequest.getLastName() != null ? employeeUpdateRequest.getLastName()
+                : employeeToUpdate.getLastName());
+        employeeToUpdate
+                .setDepartment(employeeUpdateRequest.getDepartment() != null ? employeeUpdateRequest.getDepartment()
+                        : employeeToUpdate.getDepartment());
+        employeeToUpdate.setSalary(employeeUpdateRequest.getSalary() >= 15000 && employeeUpdateRequest.getSalary() != null ? employeeUpdateRequest.getSalary()
+                : employeeToUpdate.getSalary());
 
-        return employeeRepository.save(employee);
+        return employeeRepository.save(employeeToUpdate);
     }
 
     public void deleteEmployee(int id) {
