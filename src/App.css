@@ -34,6 +34,27 @@ body {
   flex-direction: column;
 }
 
+.AsideTitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.AsideHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #c44e71;
+  height: 3px;
+  margin-bottom: 1em;
+}
+
 .InputFields {
   width: 96%;
   font-size: 16px;
@@ -111,23 +132,18 @@ tbody {
   padding: 1em;
 }
 
+.Table tbody tr:hover {
+  background: lightgrey;
+}
+
+.TableIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 h2 {
   padding: 1%;
-}
-
-hr {
-  border: 0;
-  clear: both;
-  display: block;
-  width: 96%;
-  background-color: #c44e71;
-  height: 3px;
-  margin-bottom: 1em;
-}
-
-.AsideTitle {
-  font-size: 20px;
-  font-weight: bold;
 }
 
 .modalBg {
@@ -164,10 +180,17 @@ hr {
   font-weight: bold;
 }
 
-.ConfrimButton {
+.ButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 16px;
+}
+
+.ConfirmButton {
   color: white;
   font-size: 15px;
-  width: 50%;
+  width: 45%;
   padding: 0.5em;
   background: #c44e71;
   border-radius: 20px;

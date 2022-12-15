@@ -6,7 +6,13 @@ class Modal extends Component {
       <div>
         <div className="modalBg"></div>
         <div className="pop">
-          {/*code goes here for modal content*/}
+          <h2>Confirm</h2>
+          <hr/>
+          <span>Are you sure you want to delete employee detail with id: 3</span>
+          <div className="ButtonsContainer">
+            <button className="ConfirmButton">No</button>
+            <button className="ConfirmButton">Yes</button>
+          </div>
         </div>
       </div>
     );
