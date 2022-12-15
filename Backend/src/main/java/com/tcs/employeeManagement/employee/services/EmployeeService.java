@@ -48,7 +48,7 @@ public class EmployeeService {
 
     public Employee updateEmployee(int id, EmployeeUpdateRequestDTO employeeUpdateRequest) {
         Employee employeeToUpdate = employeeRepository.findById(id).get();
-        
+
         employeeToUpdate
                 .setFirstName(employeeUpdateRequest.getFirstName() != null ? employeeUpdateRequest.getFirstName()
                         : employeeToUpdate.getFirstName());
@@ -57,8 +57,10 @@ public class EmployeeService {
         employeeToUpdate
                 .setDepartment(employeeUpdateRequest.getDepartment() != null ? employeeUpdateRequest.getDepartment()
                         : employeeToUpdate.getDepartment());
-        employeeToUpdate.setSalary(employeeUpdateRequest.getSalary() >= 15000 && employeeUpdateRequest.getSalary() != null ? employeeUpdateRequest.getSalary()
-                : employeeToUpdate.getSalary());
+        employeeToUpdate
+                .setSalary(employeeUpdateRequest.getSalary() >= 15000 && employeeUpdateRequest.getSalary() != null
+                        ? employeeUpdateRequest.getSalary()
+                        : employeeToUpdate.getSalary());
 
         return employeeRepository.save(employeeToUpdate);
     }
