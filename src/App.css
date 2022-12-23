@@ -35,14 +35,11 @@ body {
 }
 
 .AsideTitle {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.AsideHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 hr {

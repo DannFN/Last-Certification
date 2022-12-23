@@ -27,11 +27,13 @@ describe("Testing Modal Component", () => {
         salary: "25000",
       },
     ];
+
     const mockSuccessResponse = dummyData;
     const mockJsonPromise = Promise.resolve(mockSuccessResponse); // 2
     const mockFetchPromise = Promise.resolve({
       json: () => mockJsonPromise,
     });
+    
     jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise); // 4
   });
 
@@ -44,7 +46,6 @@ describe("Testing Modal Component", () => {
   });
 
   test("on component did mount", (done) => {
-    const component = shallow(<App />);
     expect(global.fetch).toHaveBeenCalledTimes(1);
     expect(global.fetch).toHaveBeenCalledWith("/api/employees");
     global.fetch.mockClear(); // 7
@@ -71,6 +72,7 @@ describe("Testing Modal Component", () => {
     expect(global.fetch).toHaveBeenCalledWith("/api/employees/2", {
       method: "Delete",
     });
+
     const spy2 = await jest.spyOn(component.instance(), "handleGetData");
     const spy3 = await jest.spyOn(component.instance(), "closeModal");
     expect(spy2).toHaveBeenCalledTimes(1);
@@ -88,6 +90,7 @@ describe("Testing Modal Component", () => {
       department: "Front-end",
       salary: undefined,
     });
+
     const spy = jest.spyOn(component.instance(), "handleAdd");
     spy();
     expect(component.state().errorMsg).toEqual(
@@ -104,6 +107,7 @@ describe("Testing Modal Component", () => {
       department: "Front-end",
       salary: 10000,
     });
+
     const spy = jest.spyOn(component.instance(), "handleAdd");
     spy();
     expect(component.state().errorMsg).toEqual(
@@ -120,12 +124,14 @@ describe("Testing Modal Component", () => {
       department: "Front-end",
       salary: 10000,
     });
+
     const spy = jest.spyOn(component.instance(), "handleAdd");
     spy();
     expect(component.state().errorMsg).toEqual(
       "First/Last name should contain atleast 3 characters"
     );
   });
+
   test("minimum 15000", async () => {
     window.alert = jest.fn();
     const component = shallow(<App />);
@@ -135,6 +141,7 @@ describe("Testing Modal Component", () => {
       department: "Front-end",
       salary: 9000,
     });
+
     const spy = jest.spyOn(component.instance(), "handleAdd");
     spy();
     expect(component.state().errorMsg).toEqual(
@@ -154,6 +161,7 @@ describe("Testing Modal Component", () => {
       sort: "Low to High",
       filter: "Front-end",
     });
+    
     const spy = jest.spyOn(component.instance(), "handleAdd");
     await spy();
     expect(global.fetch).toHaveBeenCalled();
@@ -166,9 +174,11 @@ describe("Testing Modal Component", () => {
       },
       method: "post",
     });
+
     expect(global.fetch).toHaveBeenCalledWith(
-      "/api/employees?dept=Front-end&salary=Low to High"
+      "/api/employees?dept=Front-end&salary=asc"
     );
+
     expect(component.state().firstName).toEqual("");
     expect(component.state().department).toEqual("");
     expect(component.state().salary).toEqual("");
@@ -185,6 +195,7 @@ describe("Testing Modal Component", () => {
       mode: false,
       editId: 2,
     });
+
     const spy = jest.spyOn(component.instance(), "handleAdd");
     spy();
     expect(global.fetch).toHaveBeenCalled();
@@ -196,6 +207,7 @@ describe("Testing Modal Component", () => {
       },
       method: "put",
     });
+
     expect(global.fetch).toHaveBeenCalledWith("/api/employees");
   });
 
@@ -239,6 +251,7 @@ describe("Testing Modal Component", () => {
       mode: false,
       editId: 2,
     });
+
     const spy = jest.spyOn(component.instance(), "handleResetState");
     spy(1);
     expect(component.state().firstName).toEqual("");
@@ -255,6 +268,7 @@ describe("Testing Modal Component", () => {
       sort: "none",
       filter: "none",
     });
+
     const spy = jest.spyOn(component.instance(), "handleFilter");
     spy();
     expect(global.fetch).toHaveBeenCalledWith("/api/employees");
@@ -266,33 +280,39 @@ describe("Testing Modal Component", () => {
       sort: "none",
       filter: "Front-end",
     });
+
     const spy = jest.spyOn(component.instance(), "handleFilter");
     spy();
     expect(global.fetch).toHaveBeenCalledWith("/api/employees?dept=Front-end");
   });
+
   test("filter-none sort", async () => {
     const component = shallow(<App />);
     component.setState({
       sort: "Low to High",
       filter: "none",
     });
+
     const spy = jest.spyOn(component.instance(), "handleFilter");
     spy();
     expect(global.fetch).toHaveBeenCalledWith(
-      "/api/employees?salary=Low to High"
+      "/api/employees?salary=asc"
     );
   });
+
   test("filter sort", async () => {
     const component = shallow(<App />);
     component.setState({
       sort: "Low to High",
       filter: "Front-end",
     });
+
     const spy = jest.spyOn(component.instance(), "handleFilter");
     spy();
     expect(global.fetch).toHaveBeenCalledWith(
-      "/api/employees?dept=Front-end&salary=Low to High"
+      "/api/employees?dept=Front-end&salary=asc"
     );
+
     const spy1 = jest.spyOn(component.instance(), "handleClearFilter");
     spy1();
     expect(component.state().sort).toEqual("none");

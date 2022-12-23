@@ -77,10 +77,11 @@ describe("Testing LeftBanner Component", () => {
         onClearFilter={mockfn3}
       />
     );
+    
     const aside1 = component.find(".LeftBanner").find(".AsideDiv").at(1);
     expect(aside1.find(".AsideTitle").text()).toBe("Filter & SortClear");
     expect(aside1.find("button").at(0).text()).toBe("Clear");
-    expect(aside1.find("select").at(0).props().value).toBe("Front-end");
+    expect(aside1.find("select").at(1).props().value).toBe("Front-end");
     expect(aside1.find("select").at(1).props().value).toBe("Low to High");
     const select = aside1.find("select").at(0);
     select.simulate("change");
