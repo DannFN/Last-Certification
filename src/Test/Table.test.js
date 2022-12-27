@@ -94,7 +94,7 @@ describe("testing Table Component", () => {
         onDelete={mockfn1}
         onEdit={mockfn2}
         mode={true}
-        editId={undefined}
+        editId={undefined}  
       />
     );
 

@@ -42,14 +42,14 @@ public class EmployeeController {
     @PostMapping(value = "/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody EmployeeRequestDTO employeeRequest) {
-        return new ResponseEntity<>(employeeService.savEmployee(employeeRequest), HttpStatus.CREATED);
+        return new ResponseEntity<Employee>(employeeService.savEmployee(employeeRequest), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/employees/{id}", consumes = { "application/json" })
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Employee> updateEmployee(@PathVariable int id,
             @Valid @RequestBody EmployeeUpdateRequestDTO employeeUpdateRequest) {
-        return new ResponseEntity<>(employeeService.updateEmployee(id, employeeUpdateRequest), HttpStatus.OK);
+        return new ResponseEntity<Employee>(employeeService.updateEmployee(id, employeeUpdateRequest), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/employees/{id}")

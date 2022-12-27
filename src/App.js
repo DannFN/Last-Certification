@@ -7,63 +7,120 @@ import Modal from "./Components/Modal";
 class App extends Component {
   state = {
     data: [],
+    mode: true,
+    editId: undefined,
+    deleteId: undefined,
     firstName: undefined,
     lastName: undefined,
     department: undefined,
     salary: undefined,
     showModal: false,
-    editId: undefined,
-    mode: true,
-    deleteId: undefined,
     sort: "none",
     filter: "none",
     errorMsg: "",
   };
 
+  handleGetData = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/employees");
+      const data = await res.json();
 
-  handleGetData = () => {
-   
+      if (!res.ok) {
+        throw new Error(data.description );
+      }
+
+      this.setState({ data });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   handleChange = (e) => {
-    
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
 
   handleResetState = () => {
-    
+    this.setState({
+      mode: true,
+      firstName: undefined,
+      lastName: undefined,
+      department: undefined,
+      salary: undefined,
+      errorMsg: "",
+    });
   };
 
   handleClearFilter = () => {
-    
+    this.setState({
+      filter: "none",
+      sort: "none",
+    });
   };
 
-  //filter and sorting
-  handleFilter = () => {
-    
+  handleFilter = async () => {
+    const res = await fetch(`http://localhost:3000/employees?filter=${this.state.filter}&sort=${this.state.sort}`);
+    const data = await res.json();
+    this.setState({ data });
   };
 
-  handleDelete = (i) => {
-    
+  handleDelete = async (i) => {
+    this.setState({
+      deleteId: i,
+      showModal: true,
+    });
   };
 
   closeModal = () => {
-    
+    this.setState({
+      deleteId: undefined,
+      showModal: false
+    });
   };
 
-  handleEdit = (i) => {
-    
+  handleEdit = async (i) => {
+    const res = await fetch(`http://localhost:3000/employees/${i}`, { method: "PUT" })
+
   };
 
   handleDeleteEmployee = async (i) => {
-    
+    await fetch(`http://localhost:3000/employees/${i}`, { method: "DELETE", })
+      .then(() => {
+        this.setState({
+          data: this.state.data.filter((employee) => employee.id !== i),
+        });
+        this.closeModal();
+      })
   };
 
   handleValidation = () => {
-    
+    // TODO: validation
   };
 
   handleAdd = async () => {
+    const { firstName, lastName, department, salary } = this.state;
+
+    this.handleValidation();
+
+    const res = await fetch("http://localhost:3000/employees", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        department,
+        salary,
+      }),
+    });
+
+    const newEmployee = await res.json();
     
+    this.setState({
+      data: [...this.state.data, newEmployee],
+    });
   };
 
   render() {
@@ -73,10 +130,30 @@ class App extends Component {
           Employee Management
         </header>
         <div className="Body">
-          <LeftBanner />
-          <Table />
+          <LeftBanner 
+            mode={this.state.mode}
+            firstName={this.state.firstName}
+            lastName={this.state.lastName}
+            department={this.state.department}
+            salary={this.state.salary}
+            filter={this.state.filter}
+            sort={this.state.sort}
+            handleResetState={this.handleResetState}
+            handleChange={this.handleChange}
+            handleAdd={this.handleAdd}
+            handleFilter={this.handleFilter}
+            handleClearFilter={this.handleClearFilter}
+          />
+          <Table 
+            data={this.state.data}
+            handleEdit={this.handleEdit}
+            handleDelete={this.handleDelete}
+          />
         </div>
-        <Modal />
+        <Modal 
+          showModal={this.state.showModal}
+          deleteId={this.state.deleteId}
+        />
       </div>
     );
   }

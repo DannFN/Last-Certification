@@ -13,7 +13,7 @@ describe("Testing LeftBanner Component", () => {
     const component = shallow(
       <LeftBanner
         onChange={mockfn1}
-        empId={"emp01"}
+        empId={"1"}
         firstName={"Jerin"}
         secondName={"Jack"}
         department={"Front-end"}
@@ -24,6 +24,7 @@ describe("Testing LeftBanner Component", () => {
         errorMsg={"Invalid first/last name"}
       />
     );
+    
     const aside1 = component.find(".LeftBanner").find(".AsideDiv").at(0);
     expect(aside1.find(".AsideTitle").text()).toBe("AddClear");
     expect(aside1.find("button").at(0).length).toBe(1);
