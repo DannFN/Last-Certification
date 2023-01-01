@@ -44,6 +44,8 @@ class App extends Component {
   handleResetState = () => {
     this.setState({
       mode: true,
+      editId: undefined,
+      deleteId: undefined,
       firstName: undefined,
       lastName: undefined,
       department: undefined,
@@ -60,9 +62,18 @@ class App extends Component {
   };
 
   handleFilter = async () => {
-    const res = await fetch(`http://localhost:3000/employees?filter=${this.state.filter}&sort=${this.state.sort}`);
-    const data = await res.json();
-    this.setState({ data });
+    try {
+      const res = await fetch(`http://localhost:3000/employees?filter=${this.state.filter}&sort=${this.state.sort}`);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.description);
+      }
+
+      this.setState({ data });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   handleDelete = async (i) => {
@@ -80,18 +91,48 @@ class App extends Component {
   };
 
   handleEdit = async (i) => {
-    const res = await fetch(`http://localhost:3000/employees/${i}`, { method: "PUT" })
+    try {
+      const res = await fetch(`http://localhost:3000/employees/${i}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          department: this.state.department,
+          salary: this.state.salary,
+        }),
+      });
 
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.description);
+      }
+
+      this.setState({ data });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   handleDeleteEmployee = async (i) => {
-    await fetch(`http://localhost:3000/employees/${i}`, { method: "DELETE", })
-      .then(() => {
-        this.setState({
-          data: this.state.data.filter((employee) => employee.id !== i),
-        });
-        this.closeModal();
-      })
+    try {
+      const res = await fetch(`http://localhost:3000/employees/${i}`, { method: "DELETE", });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.description);
+      }
+
+      this.setState({ 
+        showModal: false,
+        data: this.state.data.filter((employee) => employee.id !== i), 
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   handleValidation = () => {
@@ -144,7 +185,8 @@ class App extends Component {
             handleFilter={this.handleFilter}
             handleClearFilter={this.handleClearFilter}
           />
-          <Table 
+          <Table
+            handleGetData={this.handleGetData} 
             data={this.state.data}
             handleEdit={this.handleEdit}
             handleDelete={this.handleDelete}
@@ -152,7 +194,9 @@ class App extends Component {
         </div>
         <Modal 
           showModal={this.state.showModal}
+          closeModal={this.closeModal}
           deleteId={this.state.deleteId}
+          handleDeleteEmployee={this.handleDeleteEmployee}
         />
       </div>
     );
