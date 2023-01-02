@@ -16,20 +16,24 @@ function Table({ data, handleEdit, handleDelete}) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Jerry Thomas</td>
-            <td>Back-End</td>
-            <td>15000</td>
-            <td className="TableIcons">
-              <FontAwesomeIcon icon={solid('pencil')} />
-              <FontAwesomeIcon icon={solid('trash-alt')} />
-            </td>
-          </tr>
-
-          <tr>
-            <td colSpan={5}><h2>No Employee Found</h2></td>
-          </tr>
+          {data.map((employee) => (
+            <tr key={employee._id}>
+              <td>{employee._id}</td>
+              <td>{employee.firstName} {employee.lastName}</td>
+              <td>{employee.department}</td>
+              <td>{employee.salary}</td>
+              <td className="TableIcons">
+                <FontAwesomeIcon icon={solid('pencil')} onClick={() => handleEdit(employee._id)}/>
+                <FontAwesomeIcon icon={solid('trash-alt')} onClick={() => handleDelete(employee._id)}/>
+              </td>
+            </tr>
+          ))}
+          {
+            data.length === 0 &&
+            <tr>
+              <td colSpan={5}><h2>No Employee Found</h2></td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>

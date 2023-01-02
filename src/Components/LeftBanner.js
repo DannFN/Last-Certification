@@ -30,22 +30,22 @@ function LeftBanner({ mode,
                 placeholder="First Name" 
                 className="InputFields" 
                 name="firstName" 
-                value={firstName ? firstName : ""}
+                value={firstName}
                 onChange={handleChange}/>
           <input type="text" 
                 placeholder="Last Name" 
                 className="InputFields" 
-                name="lasName" 
-                value={lastName ? lastName : ""}
+                name="lastName" 
+                value={lastName}
                 onChange={handleChange}/>
           <select name="department"
-                onChange={handleChange}
-                value={department}>
+                value={department}
+                onChange={handleChange}>
             <option value="">--Select Department--</option>
-            {departments.map((department, index) => (
-              <option key={index} 
-                    value={department}>
-                {department}
+            {departments.map((dept) => (
+              <option key={dept} 
+                    value={dept}>
+                {dept}
               </option>
             ))}
           </select>
@@ -53,7 +53,7 @@ function LeftBanner({ mode,
                 placeholder="Salary per month" 
                 className="InputFields" 
                 name="salary" 
-                value={salary ? salary : ""}
+                value={salary}
                 onChange={handleChange}/>
           <button className="AddButton" 
                 type="submit">
@@ -72,9 +72,10 @@ function LeftBanner({ mode,
         <form onSubmit={handleFilter}>
           <select value={filter}>
             <option value="">--No filter--</option>
-            {departments.map((department, index) => (
-              <option key={index} value={department}>
-                {department}
+            {departments.map((dept) => (
+              <option key={dept} 
+                    value={dept}>
+                {dept}
               </option>
             ))}
           </select>

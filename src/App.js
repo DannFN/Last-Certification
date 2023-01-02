@@ -144,6 +144,8 @@ class App extends Component {
 
     this.handleValidation();
 
+    if (this.state.errorMsg) return;
+
     const res = await fetch("http://localhost:3000/employees", {
       method: "POST",
       headers: {
@@ -186,18 +188,20 @@ class App extends Component {
             handleClearFilter={this.handleClearFilter}
           />
           <Table
-            handleGetData={this.handleGetData} 
             data={this.state.data}
+            handleGetData={this.handleGetData} 
             handleEdit={this.handleEdit}
             handleDelete={this.handleDelete}
           />
         </div>
-        <Modal 
-          showModal={this.state.showModal}
-          closeModal={this.closeModal}
-          deleteId={this.state.deleteId}
-          handleDeleteEmployee={this.handleDeleteEmployee}
-        />
+        {
+          this.state.showModal &&
+          <Modal
+            deleteId={this.state.deleteId}
+            closeModal={this.closeModal}
+            handleDeleteEmployee={this.handleDeleteEmployee}
+          />
+        }
       </div>
     );
   }
