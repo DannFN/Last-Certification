@@ -8,10 +8,12 @@ class Modal extends Component {
         <div className="pop">
           <h2>Confirm</h2>
           <hr/>
-          <span>Are you sure you want to delete employee detail with id: 3</span>
+          <span>Are you sure you want to delete employee detail with id: ¨{this.props.deleteId}</span>
           <div className="ButtonsContainer">
-            <button className="ConfirmButton">No</button>
-            <button className="ConfirmButton">Yes</button>
+            <button className="ConfirmButton"
+                  onclick={this.props.closeModal}>No</button>
+            <button className="ConfirmButton"
+                  onclick={this.props.handleDeleteEmployee}>Yes</button>
           </div>
         </div>
       </div>
