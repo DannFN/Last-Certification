@@ -1,13 +1,13 @@
-package com.tcs.employeeManagement.employee.services;
+package com.tcs.employeemanagement.employee.services;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.tcs.employeeManagement.employee.models.Employee;
-import com.tcs.employeeManagement.employee.models.EmployeeRequestDTO;
-import com.tcs.employeeManagement.employee.models.EmployeeUpdateRequestDTO;
-import com.tcs.employeeManagement.employee.repositories.EmployeeRepository;
+import com.tcs.employeemanagement.employee.models.Employee;
+import com.tcs.employeemanagement.employee.models.EmployeeRequestDTO;
+import com.tcs.employeemanagement.employee.models.EmployeeUpdateRequestDTO;
+import com.tcs.employeemanagement.employee.repositories.EmployeeRepository;
 
 @Service
 public class EmployeeService {

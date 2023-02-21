@@ -1,4 +1,4 @@
-package com.tcs.employeeManagement.employee.models;
+package com.tcs.employeemanagement.employee.models;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

@@ -1,4 +1,4 @@
-package com.tcs.employeeManagement.employee.exceptions;
+package com.tcs.employeemanagement.employee.exceptions;
 
 import java.util.Collections;
 import java.util.HashMap;

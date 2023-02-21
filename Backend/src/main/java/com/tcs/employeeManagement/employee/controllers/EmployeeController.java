@@ -1,4 +1,4 @@
-package com.tcs.employeeManagement.employee.controllers;
+package com.tcs.employeemanagement.employee.controllers;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tcs.employeeManagement.employee.models.Employee;
-import com.tcs.employeeManagement.employee.models.EmployeeRequestDTO;
-import com.tcs.employeeManagement.employee.models.EmployeeUpdateRequestDTO;
-import com.tcs.employeeManagement.employee.services.EmployeeService;
+import com.tcs.employeemanagement.employee.models.Employee;
+import com.tcs.employeemanagement.employee.models.EmployeeRequestDTO;
+import com.tcs.employeemanagement.employee.models.EmployeeUpdateRequestDTO;
+import com.tcs.employeemanagement.employee.services.EmployeeService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,14 +42,14 @@ public class EmployeeController {
     @PostMapping(value = "/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Employee> createEmployee(@Valid @RequestBody EmployeeRequestDTO employeeRequest) {
-        return new ResponseEntity<Employee>(employeeService.savEmployee(employeeRequest), HttpStatus.CREATED);
+        return new ResponseEntity<>(employeeService.savEmployee(employeeRequest), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/employees/{id}", consumes = { "application/json" })
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Employee> updateEmployee(@PathVariable int id,
             @Valid @RequestBody EmployeeUpdateRequestDTO employeeUpdateRequest) {
-        return new ResponseEntity<Employee>(employeeService.updateEmployee(id, employeeUpdateRequest), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.updateEmployee(id, employeeUpdateRequest), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/employees/{id}")

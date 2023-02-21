@@ -1,4 +1,4 @@
-package com.tcs.employeeManagement.employee.models;
+package com.tcs.employeemanagement.employee.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

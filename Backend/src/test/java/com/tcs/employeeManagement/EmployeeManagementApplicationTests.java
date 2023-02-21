@@ -17,8 +17,8 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tcs.employeeManagement.employee.models.Employee;
-import com.tcs.employeeManagement.employee.repositories.EmployeeRepository;
+import com.tcs.employeemanagement.employee.models.Employee;
+import com.tcs.employeemanagement.employee.repositories.EmployeeRepository;
 
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
