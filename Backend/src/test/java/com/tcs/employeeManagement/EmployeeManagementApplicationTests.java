@@ -1,4 +1,4 @@
-package com.tcs.employeeManagement;
+package com.tcs.employeemanagement;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.BeforeEach;
