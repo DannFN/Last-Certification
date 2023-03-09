@@ -1,4 +1,4 @@
-package com.tcs.employeemanagement;
+package com.org.employeemanagement;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +17,8 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tcs.employeemanagement.employee.models.Employee;
-import com.tcs.employeemanagement.employee.repositories.EmployeeRepository;
+import com.org.employeemanagement.models.Employee;
+import com.org.employeemanagement.repositories.EmployeeRepository;
 
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;

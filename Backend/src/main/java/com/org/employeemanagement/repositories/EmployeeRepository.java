@@ -1,8 +1,8 @@
-package com.tcs.employeemanagement.employee.repositories;
+package com.org.employeemanagement.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.tcs.employeemanagement.employee.models.Employee;
+import com.org.employeemanagement.models.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 }

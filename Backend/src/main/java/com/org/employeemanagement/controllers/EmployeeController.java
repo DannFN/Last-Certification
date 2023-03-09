@@ -1,4 +1,4 @@
-package com.tcs.employeemanagement.employee.controllers;
+package com.org.employeemanagement.controllers;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tcs.employeemanagement.employee.models.Employee;
-import com.tcs.employeemanagement.employee.models.EmployeeRequestDTO;
-import com.tcs.employeemanagement.employee.models.EmployeeUpdateRequestDTO;
-import com.tcs.employeemanagement.employee.services.EmployeeService;
+import com.org.employeemanagement.models.Employee;
+import com.org.employeemanagement.models.EmployeeRequestDTO;
+import com.org.employeemanagement.models.EmployeeUpdateRequestDTO;
+import com.org.employeemanagement.services.EmployeeService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

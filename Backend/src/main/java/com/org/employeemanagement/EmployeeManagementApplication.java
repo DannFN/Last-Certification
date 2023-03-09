@@ -1,4 +1,4 @@
-package com.tcs.employeemanagement;
+package com.org.employeemanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
