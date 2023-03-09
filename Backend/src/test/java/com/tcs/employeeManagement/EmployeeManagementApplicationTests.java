@@ -28,7 +28,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 @TestMethodOrder(OrderAnnotation.class)
 class EmployeeManagementApplicationTests {
-
 	@Autowired
 	MockMvc mvc;
 
@@ -49,21 +48,21 @@ class EmployeeManagementApplicationTests {
 		final Employee employeeSix = new Employee(6, "Emp", "Six", "Full-stack", 150000);
 		final Employee employeeSeven = new Employee(7, "Emp", "Seven", "Back-end", 40000);
 		final Employee employeeEight = new Employee(8, "Emp", "Eight", "Full-stack", 85000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeTwo))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeTwo))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeThree))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeThree))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeFour))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeFour))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeFive))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeFive))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeSix))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeSix))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeSeven))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeSeven))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeEight))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeEight))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON));
 	}
 
@@ -77,7 +76,7 @@ class EmployeeManagementApplicationTests {
 	@Order(1)
 	public void createEmployee() throws Exception {
 		final Employee employeeOne = new Employee(1, "Employee", "NumberOne", "Front-end", 20000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());
 	}
@@ -87,7 +86,7 @@ class EmployeeManagementApplicationTests {
 	@Order(2)
 	public void notCreateEmployee1() throws Exception {
 		final Employee employeeOne = new Employee(1, "em@", "NumberOne", "Front-end", 20000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -97,7 +96,7 @@ class EmployeeManagementApplicationTests {
 	@Order(3)
 	public void notCreateEmployee2() throws Exception {
 		final Employee employeeOne = new Employee(1, "em", "NumberOne", "Front-end", 20000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -107,7 +106,7 @@ class EmployeeManagementApplicationTests {
 	@Order(4)
 	public void notCreateEmployee3() throws Exception {
 		final Employee employeeOne = new Employee(1, "emp", "Number1One", "Front-end", 20000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -117,7 +116,7 @@ class EmployeeManagementApplicationTests {
 	@Order(5)
 	public void notCreateEmployee4() throws Exception {
 		final Employee employeeOne = new Employee(1, "em", "N", "Front-end", 20000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -127,7 +126,7 @@ class EmployeeManagementApplicationTests {
 	@Order(6)
 	public void notCreateEmployee5() throws Exception {
 		final Employee employeeOne = new Employee(1, "emp", "Number1One", "Front-end", 14000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -137,7 +136,7 @@ class EmployeeManagementApplicationTests {
 	@Order(7)
 	public void notCreateEmployee6() throws Exception {
 		final Employee employeeOne = new Employee(1, "em", "N", "Front-end", 300000);
-		mvc.perform(MockMvcRequestBuilders.post("/employees").content(toJson(employeeOne))
+		mvc.perform(MockMvcRequestBuilders.post("/api/employees").content(toJson(employeeOne))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -146,7 +145,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(8)
 	public void getEmployees() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(8)));
 	}
 
@@ -154,7 +153,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(9)
 	public void getEmployeesByDept1() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees?dept=Back-end")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees?dept=Back-end")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)));
 	}
 
@@ -162,7 +161,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(10)
 	public void getEmployeesByDept2() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees?dept=Full-stack")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees?dept=Full-stack")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(4)));
 	}
 
@@ -170,7 +169,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(11)
 	public void getEmployeesSortedBySalaryAsc() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees?salary=asc")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees?salary=asc")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].salary", is(17000)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[1].salary", is(20000)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[2].salary", is(25000)))
@@ -185,7 +184,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(12)
 	public void getEmployeesSortedBySalaryDesc() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees?salary=desc")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees?salary=desc")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$[7].salary", is(17000)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[6].salary", is(20000)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[5].salary", is(25000)))
@@ -200,7 +199,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(13)
 	public void getSortedEmployessByDeptAndSalaryAsc() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees?dept=Full-stack&salary=asc")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees?dept=Full-stack&salary=asc")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(4)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].salary", is(35000)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[1].salary", is(45000)))
@@ -212,7 +211,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(14)
 	public void getSortedEmployessByDeptAndSalaryDesc() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/employees?dept=Back-end&salary=desc")).andExpect(status().isOk())
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees?dept=Back-end&salary=desc")).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[0].salary", is(40000)))
 				.andExpect(MockMvcResultMatchers.jsonPath("$[1].salary", is(17000)));
@@ -222,7 +221,7 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(15)
 	public void updateEmployee() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.put("/employees/4")
+		mvc.perform(MockMvcRequestBuilders.put("/api/employees/4")
 				.content(toJson(new Employee(4, null, null, "Machine_Learning", 190000)))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.firstName", is("Emp")))
@@ -235,9 +234,9 @@ class EmployeeManagementApplicationTests {
 	@Test
 	@Order(16)
 	public void deleteEmployee() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.delete("/employees/5").accept(MediaType.APPLICATION_JSON))
+		mvc.perform(MockMvcRequestBuilders.delete("/api/employees/5").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
-		mvc.perform(MockMvcRequestBuilders.get("/employees"))
+		mvc.perform(MockMvcRequestBuilders.get("/api/employees"))
 				.andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(7)));
 	}
 }
